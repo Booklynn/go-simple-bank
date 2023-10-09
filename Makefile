@@ -7,22 +7,25 @@ create_postgres:
 start_postgres:
 	docker start postgres12
 
-createdb:
+create_db:
 	docker exec -it postgres12 createdb --username=root --owner=root simple_bank
 
-dropdb:
+drop_db:
 	docker exec -it postgres12 dropdb simple_bank
 
-migrateup:
+migrate_up:
 	migrate -path db/migration -database "postgresql://root:secret@localhost:5432/simple_bank?sslmode=disable" -verbose up
 
-migratedown:
+migrate_down:
 	migrate -path db/migration -database "postgresql://root:secret@localhost:5432/simple_bank?sslmode=disable" -verbose down
 
-sqlc:
+sqlc_win:
 	docker run --rm -v "H:\Visual Studio Projects\simplebank:/db" -w /db kjconroy/sqlc generate
+
+sqlc_mac:
+	sqlc generate
 
 test:
 	go test -v -cover ./...
 
-.PHONY: create_migrate create_postgres start_postgres createdb dropdb migrateup migratedown sqlc test
+.PHONY: create_migrate create_postgres start_postgres create_db drop_db migrate_up migrate_down sqlc_win sqlc_mac test
