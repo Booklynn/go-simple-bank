@@ -19,10 +19,10 @@ migrate_up:
 migrate_down:
 	migrate -path db/migration -database "postgresql://root:secret@localhost:5432/simple_bank?sslmode=disable" -verbose down
 
-sqlc_win:
+sqlc_win: #for Windows
 	docker run --rm -v "H:\Visual Studio Projects\simplebank:/db" -w /db kjconroy/sqlc generate
 
-sqlc_mac:
+sqlc_mac: #for macOS
 	sqlc generate
 
 test:
