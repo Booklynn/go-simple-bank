@@ -30,4 +30,4 @@ go install github.com/sqlc-dev/sqlc/cmd/sqlc@latest
 ## Usage
 Check the Makefile file.
 - for example run ```make create_migrate``` create a database migration.
-- for example run ```create_postgres``` create and start a PostgreSQL 12 database in a Docker container.
+- for example run ```make create_postgres``` create and start a PostgreSQL 12 database in a Docker container.
