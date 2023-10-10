@@ -83,7 +83,7 @@ func (q *Queries) listTransfers(ctx context.Context, arg listTransfersParams) ([
 		return nil, err
 	}
 	defer rows.Close()
-	var items []Transfer
+	items := []Transfer{}
 	for rows.Next() {
 		var i Transfer
 		if err := rows.Scan(

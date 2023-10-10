@@ -28,4 +28,7 @@ sqlc_mac: #for macOS
 test:
 	go test -v -cover ./...
 
-.PHONY: create_migrate create_postgres start_postgres create_db drop_db migrate_up migrate_down sqlc_win sqlc_mac test
+server:
+	go run main.go
+
+.PHONY: create_migrate create_postgres start_postgres create_db drop_db migrate_up migrate_down sqlc_win sqlc_mac test server

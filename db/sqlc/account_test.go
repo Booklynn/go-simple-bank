@@ -12,7 +12,7 @@ import (
 
 func createRandomAccount(t *testing.T) Account {
 	arg := CreateAccountParams{
-		Onwer:    ulti.RandomOwner(),
+		Owner:    ulti.RandomOwner(),
 		Balance:  ulti.RandomMoney(),
 		Currency: ulti.RandomCurrency(),
 	}
@@ -21,7 +21,7 @@ func createRandomAccount(t *testing.T) Account {
 
 	require.NoError(t, err)
 	require.NotEmpty(t, account)
-	require.Equal(t, arg.Onwer, account.Onwer)
+	require.Equal(t, arg.Owner, account.Owner)
 	require.Equal(t, arg.Balance, account.Balance)
 	require.Equal(t, arg.Currency, account.Currency)
 	require.NotZero(t, account.ID)
@@ -42,7 +42,7 @@ func TestGetAccount(t *testing.T) {
 	require.NoError(t, err)
 	require.NotEmpty(t, actualAccount)
 	require.Equal(t, expectedAccount.ID, actualAccount.ID)
-	require.Equal(t, expectedAccount.Onwer, actualAccount.Onwer)
+	require.Equal(t, expectedAccount.Owner, actualAccount.Owner)
 	require.Equal(t, expectedAccount.Balance, actualAccount.Balance)
 	require.Equal(t, expectedAccount.Currency, actualAccount.Currency)
 	require.WithinDuration(t, expectedAccount.CreatedAt, actualAccount.CreatedAt, time.Second)
@@ -61,7 +61,7 @@ func TestUpdateAccount(t *testing.T) {
 	require.NoError(t, err)
 	require.NotEmpty(t, updatedAccount)
 	require.Equal(t, createdAccount.ID, updatedAccount.ID)
-	require.Equal(t, createdAccount.Onwer, updatedAccount.Onwer)
+	require.Equal(t, createdAccount.Owner, updatedAccount.Owner)
 	require.Equal(t, arg.Balance, updatedAccount.Balance)
 	require.Equal(t, createdAccount.Currency, updatedAccount.Currency)
 	require.WithinDuration(t, createdAccount.CreatedAt, updatedAccount.CreatedAt, time.Second)
@@ -85,12 +85,12 @@ func TestListAccounts(t *testing.T) {
 		createRandomAccount(t)
 	}
 
-	arg := listAccountsParams{
+	arg := ListAccountsParams{
 		Limit:  5,
 		Offset: 5,
 	}
 
-	createdAccounts, err := testQueries.listAccounts(context.Background(), arg)
+	createdAccounts, err := testQueries.ListAccounts(context.Background(), arg)
 
 	require.NoError(t, err)
 	require.Len(t, createdAccounts, 5)
