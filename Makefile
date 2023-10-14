@@ -20,7 +20,7 @@ migrate_down:
 	migrate -path db/migration -database "postgresql://root:secret@localhost:5432/simple_bank?sslmode=disable" -verbose down
 
 sqlc_win: #for Windows
-	docker run --rm -v "$(pwd):/db" -w /db sqlc/sqlc generate
+	docker run --rm -v "$(CURDIR):/db" -w /db sqlc/sqlc generate
 
 sqlc_mac: #for macOS
 	sqlc generate
