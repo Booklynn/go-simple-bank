@@ -22,7 +22,7 @@ migrate_down:
 sqlc_win: #for Windows
 	docker run --rm -v "$(CURDIR):/db" -w /db sqlc/sqlc generate
 
-sqlc_mac: #for macOS
+sqlc:
 	sqlc generate
 
 test:
